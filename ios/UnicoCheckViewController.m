@@ -9,8 +9,8 @@
 #import "UnicoCheckModule.h"
 #import <AcessoBio/AcessoBio-Swift.h>
 #import "UnicoTheme.h"
-#import "UnicoConfig.h"
-#import "UnicoConfigLiveness.h"
+#import "UnicoConfig.m"
+#import "UnicoConfigLiveness.m"
 
 @interface UnicoCheckViewController ()
 
@@ -105,7 +105,8 @@
 }
 
 - (void)onSuccessSelfie:(SelfieResult *)result {
-  [self.acessoBioModule onSucessCameraFace:result.base64];
+  // [self.acessoBioModule onSucessCamera:result.base64];
+  [self.acessoBioModule onSucessCamera: @"Selfie capturada com sucesso"];
   [self sair];
 }
 
@@ -114,7 +115,8 @@
 }
 
 - (void)onSuccessDocument: (DocumentResult *)result {
-  [self.acessoBioModule onSucessCameraFace:result.base64];
+  // [self.acessoBioModule onSucessCamera:result.base64];
+  [self.acessoBioModule onSucessCamera: @"Documento capturado com sucesso"];
   [self sair];
 }
 

@@ -40,7 +40,7 @@ RCT_EXTERN_METHOD(callSmartCamera)
   [self openCamera:SMART];
 }
 
-RCT_EXTERN_METHOD(callSmartCamera)
+RCT_EXTERN_METHOD(callLivenessCamera)
 - (void)callLivenessCamera {
   [self openCamera:LIVENESS];
 }
@@ -78,9 +78,9 @@ RCT_EXTERN_METHOD(callDocumentCamera)
     // Remove upstream listeners, stop unnecessary background tasks
 }
 
-- (void)onSucessCameraFace: (NSString *)base64 {
+- (void)onSucessCamera: (NSString *)msg {
   if(hasListeners) {
-    [self sendEventWithName:@"onSuccess" body:@{@"objResult": base64}];
+    [self sendEventWithName:@"onSuccess" body:@{@"objResult": msg}];
   }  
 }
 

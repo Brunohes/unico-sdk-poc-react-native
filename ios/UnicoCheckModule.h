@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, CameraMode) {
   bool hasListeners;
 }
 
-- (void)onSucessCameraFace: (NSString *)base64;
+- (void)onSucessCamera: (NSString *)msg;
 - (void)onErrorCameraFace:(NSString *)error;
 - (void)onErrorAcessoBioManager:(NSString *)error;
 - (void)systemClosedCameraTimeoutFaceInference;

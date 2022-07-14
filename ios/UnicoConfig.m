@@ -6,27 +6,27 @@
 @implementation UnicoConfig : NSObject
 
 - (NSString * _Nonnull)getBundleIdentifier {
-    return @"<YOUR_MOBILE_BUNDLE_IDENTIFIER>"
+    return @"<YOUR_MOBILE_BUNDLE_IDENTIFIER>";
 }
 
 - (NSString * _Nonnull)getHostInfo {
-    return @"<YOUR_HOST_INFO>"
+    return @"<YOUR_HOST_INFO>";
 }
 
 - (NSString * _Nonnull)getHostKey {
-    return @"<YOUR_HOST_KEY>"
+    return @"<YOUR_HOST_KEY>";
 }
 
 - (NSString * _Nonnull)getMobileSdkAppId {
-    return @"<YOUR_MOBILE_SDK_APP_ID>"
+    return @"<YOUR_MOBILE_SDK_APP_ID>";
 }
 
 - (NSString * _Nonnull)getProjectId {
-    return @"<YOUR_PROJECT_ID>"
+    return @"<YOUR_PROJECT_ID>";
 }
 
 - (NSString * _Nonnull)getProjectNumber {
-    return @"<YOUR_PROJECT_NUMBER>"
+    return @"<YOUR_PROJECT_NUMBER>";
 }
 
 @end
