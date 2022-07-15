@@ -41,6 +41,7 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
     private static Logger logger = Logger.getLogger(UnicoCheckModule.class.getName());
     private static UnicoConfigDefault unicoConfigDefault = new UnicoConfigDefault();
     private static UnicoConfigLiveness unicoConfigLiveness  = new UnicoConfigLiveness();
+    private static UnicoTheme unicoTheme  = new UnicoTheme();
 
     protected static final int REQUEST_CAMERA_PERMISSION = 1;
 
@@ -107,7 +108,7 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
     @ReactMethod
     private void build(boolean hasSmart) {
         acessoBioBuilder = new AcessoBio(getCurrentActivity(), UnicoCheckModule.this);
-        unicoCheckCamera = acessoBioBuilder.setSmartFrame(hasSmart).setAutoCapture(hasSmart).build();
+        unicoCheckCamera = acessoBioBuilder.setSmartFrame(hasSmart).setAutoCapture(hasSmart).setTheme(unicoTheme).build();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
