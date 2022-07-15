@@ -64,22 +64,24 @@
 - (void)callDefaultCamera {
   [unicoCheck setSmartFrame:false];
   [unicoCheck setAutoCapture:false];
+  [unicoCheck setTheme: [UnicoTheme new]];
   [[unicoCheck build] prepareSelfieCamera:self config: [UnicoConfig new]];
 }
 
 - (void)callSmartCamera {
   [unicoCheck setSmartFrame:true];
   [unicoCheck setAutoCapture:true];
+  [unicoCheck setTheme: [UnicoTheme new]];
   [[unicoCheck build] prepareSelfieCamera:self config: [UnicoConfig new]];
 }
 
 - (void)callLivenessCamera {
-  [unicoCheck setSmartFrame:true];
-  [unicoCheck setAutoCapture:true];
+  [unicoCheck setTheme: [UnicoTheme new]];
   [[unicoCheck build] prepareSelfieCamera:self config: [UnicoConfigLiveness new]];
 }
 
 - (void)callDocumentCamera {
+  [unicoCheck setTheme: [UnicoTheme new]];
   [[unicoCheck build] prepareDocumentCamera:self config: [UnicoConfig new]];
 }
 

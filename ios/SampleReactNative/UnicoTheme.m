@@ -1,69 +1,61 @@
-//
-//  UnicoTheme.m
-//  SampleReactNative
-//
-//  Created by André Francisco De Assis Neto on 11/02/22.
-//
-
 #import "UnicoTheme.h"
-#import <UIKit/UIKit.h>
 
 @implementation UnicoTheme
 
-- (id)getColorBackground {
-  return nil;
-}
-
-- (id)getColorBackgroundBottomDocument {
-  return nil;
-}
-
-- (id)getColorBackgroundButtonPopupError {
-  return nil;
-}
-
-- (id)getColorBackgroundPopupError {
-  return nil;
-}
-
-- (id)getColorBackgroundTakePictureButton {
-  return nil;
-}
-
-- (id)getColorBoxMessage {
-  return nil;
-}
-
-- (id)getColorIconTakePictureButton {
-  return nil;
-}
-
 - (id)getColorSilhouetteError {
-  return nil;
-}
-
-- (id)getColorSilhouetteNeutral {
-  return nil;
+    return [UIColor redColor];
 }
 
 - (id)getColorSilhouetteSuccess {
-  return nil;
+    return [UIColor greenColor];
+}
+
+- (id)getColorSilhouetteNeutral {
+    return [UIColor yellowColor];
+}
+
+- (id)getColorBackground {
+    return nil;
+}
+
+- (id)getColorBackgroundBottomDocument {
+    return nil;
+}
+
+- (id)getColorBackgroundButtonPopupError {
+    return nil;
+}
+
+- (id)getColorBackgroundPopupError {
+    return nil;
+}
+
+- (id)getColorBackgroundTakePictureButton {
+    return nil;
+}
+
+- (id)getColorBoxMessage {
+    return nil;
+}
+
+- (id)getColorIconTakePictureButton {
+    return nil;
 }
 
 - (id)getColorTextBottomDocument {
-  return nil;
+    return nil;
 }
 
 - (id)getColorTextButtonPopupError {
-  return nil;
+    return nil;
 }
 
 - (id)getColorTextMessage {
-  return nil;
+    return nil;
 }
 
 - (id)getColorTextPopupError {
-  return nil;
+    return nil;
 }
 
 @end
