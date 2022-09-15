@@ -14,10 +14,10 @@ import com.acesso.acessobio_android.iAcessoBioDocument;
 import com.acesso.acessobio_android.iAcessoBioSelfie;
 import com.acesso.acessobio_android.onboarding.AcessoBio;
 import com.acesso.acessobio_android.onboarding.IAcessoBioBuilder;
+import com.acesso.acessobio_android.onboarding.camera.CameraListener;
 import com.acesso.acessobio_android.onboarding.camera.UnicoCheckCamera;
 import com.acesso.acessobio_android.onboarding.camera.UnicoCheckCameraOpener;
 import com.acesso.acessobio_android.onboarding.camera.document.DocumentCameraListener;
-import com.acesso.acessobio_android.onboarding.camera.selfie.SelfieCameraListener;
 import com.acesso.acessobio_android.onboarding.types.DocumentType;
 import com.acesso.acessobio_android.services.dto.ErrorBio;
 import com.acesso.acessobio_android.services.dto.ResultCamera;
@@ -120,7 +120,7 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
                 public void run() {
                     if (mode == CameraMode.SMART) {
                         build(true);
-                        unicoCheckCamera.prepareSelfieCamera(unicoConfigDefault, new SelfieCameraListener() {
+                        unicoCheckCamera.prepareCamera(unicoConfigDefault, new CameraListener() {
 
                         /*
                            Para gerar o arquivo JSON é necessário criar uma API key. Siga os passos abaixo:
@@ -141,7 +141,7 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
                         */
 
                             @Override
-                            public void onCameraReady(UnicoCheckCameraOpener.Selfie cameraOpener) {
+                            public void onCameraReady(UnicoCheckCameraOpener.Camera cameraOpener) {
                                 cameraOpener.open(UnicoCheckModule.this);
                             }
 
@@ -152,9 +152,9 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
                         });
                     } else if (mode == CameraMode.DEFAULT) {
                         build(false);
-                        unicoCheckCamera.prepareSelfieCamera(unicoConfigDefault, new SelfieCameraListener() {
+                        unicoCheckCamera.prepareCamera(unicoConfigDefault, new CameraListener() {
                             @Override
-                            public void onCameraReady(UnicoCheckCameraOpener.Selfie cameraOpener) {
+                            public void onCameraReady(UnicoCheckCameraOpener.Camera cameraOpener) {
                                 cameraOpener.open(UnicoCheckModule.this);
                             }
 
@@ -165,9 +165,9 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
                         });
                     } else if (mode == CameraMode.LIVENESS) {
                         build(false);
-                        unicoCheckCamera.prepareSelfieCamera(unicoConfigLiveness, new SelfieCameraListener() {
+                        unicoCheckCamera.prepareCamera(unicoConfigLiveness, new CameraListener() {
                             @Override
-                            public void onCameraReady(UnicoCheckCameraOpener.Selfie cameraOpener) {
+                            public void onCameraReady(UnicoCheckCameraOpener.Camera cameraOpener) {
                                 cameraOpener.open(UnicoCheckModule.this);
                             }
 
