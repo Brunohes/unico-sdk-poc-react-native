@@ -12,7 +12,8 @@ typedef NS_ENUM(NSInteger, CameraMode) {
   DEFAULT,
   SMART,
   LIVENESS,
-  DOCUMENT
+  RG_FRONT,
+  RG_BACK
 };
 
 @interface UnicoCheckModule : RCTEventEmitter <RCTBridgeModule> {

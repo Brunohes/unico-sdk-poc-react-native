@@ -55,8 +55,11 @@
     case LIVENESS:
       [self performSelector:@selector(callLivenessCamera) withObject:nil afterDelay:0.5];
       break;
-    case DOCUMENT:
-      [self performSelector:@selector(callDocumentCamera) withObject:nil afterDelay:0.5];
+    case RG_FRONT:
+      [self performSelector:@selector(callDocumentRGFrontCamera) withObject:nil afterDelay:0.5];
+      break;
+    case RG_BACK:
+      [self performSelector:@selector(callDocumentRGBackCamera) withObject:nil afterDelay:0.5];
       break;
   }
 }
@@ -80,7 +83,12 @@
   [[unicoCheck build] prepareSelfieCamera:self config: [UnicoConfigLiveness new]];
 }
 
-- (void)callDocumentCamera {
+- (void)callDocumentRGFrontCamera {
+  [unicoCheck setTheme: [UnicoTheme new]];
+  [[unicoCheck build] prepareDocumentCamera:self config: [UnicoConfig new]];
+}
+
+- (void)callDocumentRGBackCamera {
   [unicoCheck setTheme: [UnicoTheme new]];
   [[unicoCheck build] prepareDocumentCamera:self config: [UnicoConfig new]];
 }
@@ -95,15 +103,18 @@
 }
 
 -(void)onCameraReadyDocument:(id<AcessoBioCameraOpenerDelegate>)cameraOpener  {
-  [cameraOpener openDocument:DocumentCNH delegate:self];
+  // [cameraOpener openDocument:DocumentRGFrente delegate:self];
+  [cameraOpener openDocument:DocumentRGVerso delegate:self];
 }
 
 - (void)onCameraFailedDocument:(NSString *)message{
   NSLog(@"%@", message);
 }
 
-- (void)onCameraFailed:(NSString *)message {
-  NSLog(@"%@", message);
+- (void)onCameraFailed:(ErrorBio *)message {
+  NSLog(@"onCameraFailed");
+  NSLog(@"%@", message.desc);
+  [self sair];
 }
 
 - (void)onSuccessSelfie:(SelfieResult *)result {
@@ -113,7 +124,9 @@
 }
 
 - (void)onErrorSelfie:(ErrorBio *)errorBio {
+  NSLog(@"onErrorSelfie");
   NSLog(@"%@", errorBio.desc);
+  [self sair];
 }
 
 - (void)onSuccessDocument: (DocumentResult *)result {

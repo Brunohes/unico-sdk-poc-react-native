@@ -6,4 +6,9 @@
         <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
     </style>
 
+    <style name="UnicoAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#FFFF00</item>
+        <item name="colorPrimaryDark">#00FF00</item>
+        <item name="colorAccent">#FF0000</item>
+    </style>
 </resources>

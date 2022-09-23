@@ -49,7 +49,8 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
         SMART,
         DEFAULT,
         LIVENESS,
-        DOCUMENT
+        RG_FRONT,
+        RG_BACK
     }
 
     private IAcessoBioBuilder acessoBioBuilder;
@@ -100,8 +101,14 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @ReactMethod
-    private void callDocumentCamera() {
-        this.openCamera(CameraMode.DOCUMENT);
+    private void callDocumentRGFrontCamera() {
+        this.openCamera(CameraMode.RG_FRONT);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @ReactMethod
+    private void callDocumentRGBackCamera() {
+        this.openCamera(CameraMode.RG_BACK);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -176,12 +183,25 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
                                 Toast.makeText(getCurrentActivity(), message, Toast.LENGTH_LONG).show();
                             }
                         });
-                    } else {
+                    } else if (mode == CameraMode.RG_FRONT) {
                         build(false);
                         unicoCheckCamera.prepareDocumentCamera(unicoConfigDefault, new DocumentCameraListener() {
                             @Override
                             public void onCameraReady(UnicoCheckCameraOpener.Document cameraOpener) {
                                 cameraOpener.open(DocumentType.RG_FRENTE, UnicoCheckModule.this);
+                            }
+
+                            @Override
+                            public void onCameraFailed(String message) {
+                                Toast.makeText(getCurrentActivity(), message, Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } else {
+                        build(false);
+                        unicoCheckCamera.prepareDocumentCamera(unicoConfigDefault, new DocumentCameraListener() {
+                            @Override
+                            public void onCameraReady(UnicoCheckCameraOpener.Document cameraOpener) {
+                                cameraOpener.open(DocumentType.RG_VERSO, UnicoCheckModule.this);
                             }
 
                             @Override

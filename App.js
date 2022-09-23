@@ -91,7 +91,7 @@ const App = () => {
 
       <TouchableOpacity
         activeOpacity={0.6}
-        onPress={() => UnicoCheckModule.callDocumentCamera()}
+        onPress={() => UnicoCheckModule.callDocumentRGFrontCamera()}
         style={{
           backgroundColor: 'blue',
           borderRadius: 5,
@@ -100,7 +100,21 @@ const App = () => {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <Text style={{ color: 'white', fontSize: 18 }}>Documents</Text>
+        <Text style={{ color: 'white', fontSize: 18 }}>RG Frente</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        activeOpacity={0.6}
+        onPress={() => UnicoCheckModule.callDocumentRGBackCamera()}
+        style={{
+          backgroundColor: 'blue',
+          borderRadius: 5,
+          width: 150,
+          height: 50,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text style={{ color: 'white', fontSize: 18 }}>RG Verso</Text>
       </TouchableOpacity>
     </View >
   );
