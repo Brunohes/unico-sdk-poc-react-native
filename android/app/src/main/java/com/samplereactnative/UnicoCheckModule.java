@@ -263,9 +263,9 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
 
     @Override
     public void onSuccessSelfie(ResultCamera resultCamera) {
-        // sendEvent(reactContext, "onSuccess", resultCamera.getBase64()); //base64
+        sendEvent(reactContext, "onSuccess", resultCamera.getBase64()); //base64
         // sendEvent(reactContext, "onSuccess", resultCamera.getEncrypted()); //JWT
-        sendEvent(reactContext, "onSuccess", "Selfie capturada com sucesso");
+        // sendEvent(reactContext, "onSuccess", "Selfie capturada com sucesso");
     }
 
     @Override
@@ -275,8 +275,9 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
 
     @Override
     public void onSuccessDocument(ResultCamera result) {
-        // sendEvent(reactContext, "onSuccess", result.getBase64()); //base64
-        sendEvent(reactContext, "onSuccess", "Documento capturado com sucesso");
+        sendEvent(reactContext, "onSuccess", result.getBase64()); //base64
+        // sendEvent(reactContext, "onSuccess", resultCamera.getEncrypted()); //JWT
+        // sendEvent(reactContext, "onSuccess", "Documento capturado com sucesso");
     }
 
     @Override
