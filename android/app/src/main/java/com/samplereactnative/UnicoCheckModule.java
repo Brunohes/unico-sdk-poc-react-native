@@ -49,8 +49,8 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
         SMART,
         DEFAULT,
         LIVENESS,
-        RG_FRONT,
-        RG_BACK
+        DOCUMENT_FRONT,
+        DOCUMENT_BACK
     }
 
     private IAcessoBioBuilder acessoBioBuilder;
@@ -101,14 +101,14 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @ReactMethod
-    private void callDocumentRGFrontCamera() {
-        this.openCamera(CameraMode.RG_FRONT);
+    private void callDocumentFrontCamera() {
+        this.openCamera(CameraMode.DOCUMENT_FRONT);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @ReactMethod
-    private void callDocumentRGBackCamera() {
-        this.openCamera(CameraMode.RG_BACK);
+    private void callDocumentBackCamera() {
+        this.openCamera(CameraMode.DOCUMENT_BACK);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -183,12 +183,12 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
                                 Toast.makeText(getCurrentActivity(), message, Toast.LENGTH_LONG).show();
                             }
                         });
-                    } else if (mode == CameraMode.RG_FRONT) {
+                    } else if (mode == CameraMode.DOCUMENT_FRONT) {
                         build(false);
                         unicoCheckCamera.prepareDocumentCamera(unicoConfigDefault, new DocumentCameraListener() {
                             @Override
                             public void onCameraReady(UnicoCheckCameraOpener.Document cameraOpener) {
-                                cameraOpener.open(DocumentType.RG_FRENTE, UnicoCheckModule.this);
+                                cameraOpener.open(DocumentType.CNH_FRENTE, UnicoCheckModule.this);
                             }
 
                             @Override
@@ -196,12 +196,12 @@ public class UnicoCheckModule extends ReactContextBaseJavaModule implements Aces
                                 Toast.makeText(getCurrentActivity(), message, Toast.LENGTH_LONG).show();
                             }
                         });
-                    } else {
+                    } else if (mode == CameraMode.DOCUMENT_BACK){
                         build(false);
                         unicoCheckCamera.prepareDocumentCamera(unicoConfigDefault, new DocumentCameraListener() {
                             @Override
                             public void onCameraReady(UnicoCheckCameraOpener.Document cameraOpener) {
-                                cameraOpener.open(DocumentType.RG_VERSO, UnicoCheckModule.this);
+                                cameraOpener.open(DocumentType.CNH_VERSO, UnicoCheckModule.this);
                             }
 
                             @Override

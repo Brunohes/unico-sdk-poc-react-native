@@ -11,7 +11,7 @@ target 'SampleReactNative' do
 
 	use_react_native!(:path => config["reactNativePath"])
 
-	pod ‘unicocheck-ios’, '2.3.6'
+	pod ‘unicocheck-ios’, '2.3.7'
 
 	target 'SampleReactNativeTests' do
 		inherit! :complete

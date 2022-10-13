@@ -52,8 +52,8 @@ const Home = (props) => {
       <SDKButton onPress ={() => UnicoCheckModule.callDefaultCamera()} backgroundColor='red' textColor='white' text='Camera Default'/>
       <SDKButton onPress ={() => UnicoCheckModule.callSmartCamera()} backgroundColor='green' textColor='white' text='Camera Smart'/>
       <SDKButton onPress ={() => UnicoCheckModule.callLivenessCamera()} backgroundColor='gray' textColor='white' text='Camera Liveness'/>
-      <SDKButton onPress ={() => UnicoCheckModule.callDocumentRGFrontCamera()} backgroundColor='blue' textColor='white' text='RG Frente'/>
-      <SDKButton onPress ={() => UnicoCheckModule.callDocumentRGBackCamera()} backgroundColor='blue' textColor='white' text='RG Verso'/>
+      <SDKButton onPress ={() => UnicoCheckModule.callDocumentFrontCamera()} backgroundColor='blue' textColor='white' text='Document Front'/>
+      <SDKButton onPress ={() => UnicoCheckModule.callDocumentBackCamera()} backgroundColor='blue' textColor='white' text='Document Back'/>
     </View >
   )
 }

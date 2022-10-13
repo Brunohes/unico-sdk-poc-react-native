@@ -45,14 +45,14 @@ RCT_EXTERN_METHOD(callLivenessCamera)
   [self openCamera:LIVENESS];
 }
 
-RCT_EXTERN_METHOD(callDocumentRGFrontCamera)
-- (void)callDocumentRGFrontCamera {
-  [self openCamera:RG_FRONT];
+RCT_EXTERN_METHOD(callDocumentFrontCamera)
+- (void)callDocumentFrontCamera {
+  [self openCamera:DOCUMENT_FRONT];
 }
 
-RCT_EXTERN_METHOD(callDocumentRGBackCamera)
-- (void)callDocumentRGBackCamera {
-  [self openCamera:RG_BACK];
+RCT_EXTERN_METHOD(callDocumentBackCamera)
+- (void)callDocumentBackCamera {
+  [self openCamera:DOCUMENT_BACK];
 }
 
 - (void)openCamera: (CameraMode)cameraMode {

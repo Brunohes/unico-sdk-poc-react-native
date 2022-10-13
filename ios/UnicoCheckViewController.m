@@ -20,6 +20,8 @@
 
 @implementation UnicoCheckViewController
 
+//documentType = DocumentRGFrente;
+
 - (void)viewDidLoad {
   [super viewDidLoad];
 
@@ -55,11 +57,11 @@
     case LIVENESS:
       [self performSelector:@selector(callLivenessCamera) withObject:nil afterDelay:0.5];
       break;
-    case RG_FRONT:
-      [self performSelector:@selector(callDocumentRGFrontCamera) withObject:nil afterDelay:0.5];
+    case DOCUMENT_FRONT:
+      [self performSelector:@selector(callDocumentFrontCamera)    withObject:nil afterDelay:0.5];
       break;
-    case RG_BACK:
-      [self performSelector:@selector(callDocumentRGBackCamera) withObject:nil afterDelay:0.5];
+    case DOCUMENT_BACK:
+      [self performSelector:@selector(callDocumentBackCamera) withObject:nil afterDelay:0.5];
       break;
   }
 }
@@ -79,16 +81,21 @@
 }
 
 - (void)callLivenessCamera {
+  NSLog(@"callLivenessCamera");
   [unicoCheck setTheme: [UnicoTheme new]];
   [[unicoCheck build] prepareSelfieCamera:self config: [UnicoConfigLiveness new]];
 }
 
-- (void)callDocumentRGFrontCamera {
+- (void)callDocumentFrontCamera {
+  NSLog(@"callDocumentFrontCamera");
+//  documentType = DocumentRGFrente;
   [unicoCheck setTheme: [UnicoTheme new]];
   [[unicoCheck build] prepareDocumentCamera:self config: [UnicoConfig new]];
 }
 
-- (void)callDocumentRGBackCamera {
+- (void)callDocumentBackCamera {
+  NSLog(@"callDocumentBackCamera");
+//  documentType = DocumentRGVerso;
   [unicoCheck setTheme: [UnicoTheme new]];
   [[unicoCheck build] prepareDocumentCamera:self config: [UnicoConfig new]];
 }
@@ -103,12 +110,13 @@
 }
 
 -(void)onCameraReadyDocument:(id<AcessoBioCameraOpenerDelegate>)cameraOpener  {
-  // [cameraOpener openDocument:DocumentRGFrente delegate:self];
-  [cameraOpener openDocument:DocumentRGVerso delegate:self];
+  NSLog(@"onCameraReadyDocument");
+  [cameraOpener openDocument:DocumentCNHFrente delegate:self];
 }
 
-- (void)onCameraFailedDocument:(NSString *)message{
-  NSLog(@"%@", message);
+- (void)onCameraFailedDocument:(ErrorBio *)message{
+  NSLog(@"onCameraFailedDocument");
+  NSLog(@"%@", message.desc);
 }
 
 - (void)onCameraFailed:(ErrorBio *)message {
@@ -118,8 +126,8 @@
 }
 
 - (void)onSuccessSelfie:(SelfieResult *)result {
-  // [self.acessoBioModule onSucessCamera:result.base64];
-  [self.acessoBioModule onSucessCamera: @"Selfie capturada com sucesso"];
+   [self.acessoBioModule onSucessCamera:result.base64];
+//  [self.acessoBioModule onSucessCamera: @"Selfie capturada com sucesso"];
   [self sair];
 }
 
@@ -130,32 +138,37 @@
 }
 
 - (void)onSuccessDocument: (DocumentResult *)result {
-  // [self.acessoBioModule onSucessCamera:result.base64];
-  [self.acessoBioModule onSucessCamera: @"Documento capturado com sucesso"];
+   [self.acessoBioModule onSucessCamera:result.base64];
+//  [self.acessoBioModule onSucessCamera: @"Documento capturado com sucesso"];
   [self sair];
 }
 
 - (void)onErrorDocument:(ErrorBio *)errorBio {
+  NSLog(@"onErrorDocument");
   NSLog(@"%@", errorBio.desc);
 }
 
 - (void)onErrorCameraFace:(NSString *)error {
+  NSLog(@"onErrorCameraFace");
   NSLog(@"%@", error);
   [self.acessoBioModule onErrorCameraFace:error];
   [self sair];
 }
 
 - (void)onSystemChangedTypeCameraTimeoutFaceInference {
+  NSLog(@"onSystemChangedTypeCameraTimeoutFaceInference");
   [self.acessoBioModule systemClosedCameraTimeoutSession];
   [self sair];
 }
 
 - (void)onSystemClosedCameraTimeoutSession {
+  NSLog(@"onSystemClosedCameraTimeoutSession");
   [self.acessoBioModule systemClosedCameraTimeoutSession];
   [self sair];
 }
 
 - (void)onUserClosedCameraManually {
+  NSLog(@"onUserClosedCameraManually");
   [self.acessoBioModule userClosedCameraManually];
   [self sair];
 }
