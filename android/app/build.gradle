@@ -152,6 +152,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('poc_react_native.keystore')
+            storePassword 'abc123'
+            keyAlias 'poc_react_native'
+            keyPassword 'abc123'
+        }
     }
     namespace 'com.samplereactnative'
     buildTypes {
@@ -166,7 +172,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -196,7 +202,7 @@ dependencies {
 
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-    implementation 'com.github.acesso-io:acessobio-android:4.2.1'
+    implementation 'com.github.acesso-io:acessobio-android:4.2.6'
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
