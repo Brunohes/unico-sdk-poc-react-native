@@ -9,8 +9,9 @@
 #import "UnicoCheckModule.h"
 #import <AcessoBio/AcessoBio-Swift.h>
 #import "UnicoTheme.h"
-#import "UnicoConfig.m"
-#import "UnicoConfigLiveness.m"
+#import "UnicoConfig.h"
+#import "UnicoConfigLiveness.h"
+
 
 @interface UnicoCheckViewController ()
 
