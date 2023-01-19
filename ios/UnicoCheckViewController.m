@@ -21,7 +21,7 @@
 
 @implementation UnicoCheckViewController
 
-//documentType = DocumentRGFrente;
+documentType = DocumentRGFrente;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -58,11 +58,14 @@
     case LIVENESS:
       [self performSelector:@selector(callLivenessCamera) withObject:nil afterDelay:0.5];
       break;
-    case DOCUMENT_FRONT:
-      [self performSelector:@selector(callDocumentFrontCamera)    withObject:nil afterDelay:0.5];
+    case DOCUMENT_RG_FRONT:
+      [self performSelector:@selector(callDocumentRGFrontCamera)    withObject:nil afterDelay:0.5];
       break;
-    case DOCUMENT_BACK:
-      [self performSelector:@selector(callDocumentBackCamera) withObject:nil afterDelay:0.5];
+    case DOCUMENT_RG_BACK:
+      [self performSelector:@selector(callDocumentRGBackCamera) withObject:nil afterDelay:0.5];
+      break;
+    case DOCUMENT_CNH:
+      [self performSelector:@selector(callDocumentCNHCamera) withObject:nil afterDelay:0.5];
       break;
   }
 }
@@ -87,16 +90,23 @@
   [[unicoCheck build] prepareSelfieCamera:self config: [UnicoConfigLiveness new]];
 }
 
-- (void)callDocumentFrontCamera {
-  NSLog(@"callDocumentFrontCamera");
-//  documentType = DocumentRGFrente;
+- (void)callDocumentRGFrontCamera {
+  NSLog(@"callDocumentRGFrontCamera");
+  documentType = DocumentRGFrente;
   [unicoCheck setTheme: [UnicoTheme new]];
   [[unicoCheck build] prepareDocumentCamera:self config: [UnicoConfig new]];
 }
 
-- (void)callDocumentBackCamera {
-  NSLog(@"callDocumentBackCamera");
-//  documentType = DocumentRGVerso;
+- (void)callDocumentRGBackCamera {
+  NSLog(@"callDocumentRGBackCamera");
+  documentType = DocumentRGVerso;
+  [unicoCheck setTheme: [UnicoTheme new]];
+  [[unicoCheck build] prepareDocumentCamera:self config: [UnicoConfig new]];
+}
+
+- (void)callDocumentCNHCamera {
+  NSLog(@"callDocumentCNHCamera");
+  documentType = DocumentCNH;
   [unicoCheck setTheme: [UnicoTheme new]];
   [[unicoCheck build] prepareDocumentCamera:self config: [UnicoConfig new]];
 }
@@ -112,7 +122,7 @@
 
 -(void)onCameraReadyDocument:(id<AcessoBioCameraOpenerDelegate>)cameraOpener  {
   NSLog(@"onCameraReadyDocument");
-  [cameraOpener openDocument:DocumentCNHFrente delegate:self];
+  [cameraOpener openDocument:documentType delegate:self];
 }
 
 - (void)onCameraFailedDocument:(ErrorBio *)message{
@@ -127,7 +137,8 @@
 }
 
 - (void)onSuccessSelfie:(SelfieResult *)result {
-   [self.acessoBioModule onSucessCamera:result.base64];
+// [self.acessoBioModule onSucessCamera:result.base64];
+   [self.acessoBioModule onSucessCamera:result.encrypted];
 //  [self.acessoBioModule onSucessCamera: @"Selfie capturada com sucesso"];
   [self sair];
 }
@@ -139,7 +150,8 @@
 }
 
 - (void)onSuccessDocument: (DocumentResult *)result {
-   [self.acessoBioModule onSucessCamera:result.base64];
+//  [self.acessoBioModule onSucessCamera:result.base64];
+    [self.acessoBioModule onSucessCamera:result.encrypted];
 //  [self.acessoBioModule onSucessCamera: @"Documento capturado com sucesso"];
   [self sair];
 }
